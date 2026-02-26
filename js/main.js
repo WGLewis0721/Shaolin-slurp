@@ -256,3 +256,89 @@
   }
 
 })();
+
+// Bushido About Enhancements
+(function () {
+  'use strict';
+
+  // -----------------------------------------------------------------------
+  // Timeline spine — animates downward via Intersection Observer
+  // -----------------------------------------------------------------------
+  const spine = document.querySelector('.bb-tl-spine');
+
+  if (spine) {
+    if ('IntersectionObserver' in window) {
+      const spineObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              spine.classList.add('bb-tl-spine--visible');
+              spineObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.05 }
+      );
+      spineObserver.observe(spine.parentElement);
+    } else {
+      spine.classList.add('bb-tl-spine--visible');
+    }
+  }
+
+  // -----------------------------------------------------------------------
+  // Timeline entries — staggered fade-in via Intersection Observer
+  // -----------------------------------------------------------------------
+  const tlEntries = document.querySelectorAll('.bb-tl-entry');
+
+  if (tlEntries.length) {
+    if ('IntersectionObserver' in window) {
+      const entryObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              const idx = Array.from(tlEntries).indexOf(entry.target);
+              const delay = idx * 120;
+              setTimeout(function () {
+                entry.target.classList.add('bb-tl-entry--visible');
+              }, delay);
+              entryObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+      tlEntries.forEach(function (el) {
+        entryObserver.observe(el);
+      });
+    } else {
+      tlEntries.forEach(function (el) {
+        el.classList.add('bb-tl-entry--visible');
+      });
+    }
+  }
+
+  // -----------------------------------------------------------------------
+  // Hero chevron — hide when hero section is mostly scrolled past
+  // -----------------------------------------------------------------------
+  const chevron = document.querySelector('.bb-chevron');
+  const bbHero = document.querySelector('.bb-hero');
+
+  if (chevron && bbHero) {
+    if ('IntersectionObserver' in window) {
+      const chevronObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.intersectionRatio < 0.5) {
+              chevron.classList.add('bb-chevron--hidden');
+            } else {
+              chevron.classList.remove('bb-chevron--hidden');
+            }
+          });
+        },
+        { threshold: [0.4, 0.5, 0.6] }
+      );
+      chevronObserver.observe(bbHero);
+    }
+  }
+
+})();

@@ -71,6 +71,21 @@ a {
 }
 
 /* --------------------------------------------------------------------------
+   Accessibility Utilities
+   -------------------------------------------------------------------------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --------------------------------------------------------------------------
    Typography
    -------------------------------------------------------------------------- */
 h1, h2, h3, h4 {
@@ -492,6 +507,14 @@ h1, h2, h3, h4 {
   object-fit: contain;
   margin-bottom: 1.5rem;
   filter: drop-shadow(0 0 20px rgba(201, 162, 39, 0.55));
+}
+
+.hero-logo-fill {
+  width: min(820px, 90vw);
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 2rem;
+  filter: drop-shadow(0 0 40px rgba(201, 162, 39, 0.7));
 }
 
 .hero-title {

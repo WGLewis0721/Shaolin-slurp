@@ -1,12 +1,13 @@
-# Cass — Headlining Performer Website
+# Shaolin Slurp Ramen — Food Truck Website
 
-https://wglewis0721.github.io/Cassidy_singer/
+https://wglewis0721.github.io/Shaolin-slurp/
 
-Production-ready static website for the **Cass** headlining performer brand.
+Production-ready static website for the **Shaolin Slurp Ramen** food truck brand.
 Built with pure HTML + CSS + minimal JS (no frameworks), designed for GitHub Pages hosting.
 
-**Design:** Dark luxury aesthetic — matte black backgrounds, restrained neon pink glow,
-cinematic stage atmosphere, bold typography, high contrast. Authority-driven, booking-first.
+**Design:** Dark grindhouse aesthetic — matte black backgrounds, neon gold accents,
+cinematic grain texture, bold kung-fu–inspired typography. Inspired by 70s–80s kung-fu
+films, Wu-Tang street culture, and the discipline of the kitchen.
 
 ---
 
@@ -14,15 +15,12 @@ cinematic stage atmosphere, bold typography, high contrast. Authority-driven, bo
 
 | Section | ID | Purpose |
 |---|---|---|
-| Navigation | `#navbar` | Fixed top nav with booking CTA |
-| Hero | `#hero` | Cinematic two-column headline with CTAs and authority strip |
-| Social Proof Strip | *(no ID)* | Star rating, testimonial quote, event category metrics |
-| Experience | `#experience` | Three premium feature blocks with velvet background |
-| Featured Live Experience | `#media` | Large video embed + category segmented controls |
-| Performance Gallery | `#gallery` | Responsive grid with lightbox |
-| Booking | `#booking` | Two-column form + booking snapshot card |
-| Final CTA | `#final-cta` | Dark authority CTA |
-| Footer | `#footer` | Quick nav, socials, brand statement |
+| Header / Nav | `#site-header` | Fixed sticky header with logo and primary nav links |
+| Hero | `#hero` | Full-screen food truck background, neon dragon emblem, tagline, CTAs |
+| About | `#about` | Two-column grid — chef portrait + brand origin story |
+| Menu | `#menu` | Signature bowls, add-ons grid, and full menu poster graphic |
+| Find the Truck | `#find-the-truck` | Social follow CTA with Instagram and TikTok links |
+| Footer | *(`.site-footer`)* | Brand icon, tagline, social icons, dynamic copyright |
 
 ---
 
@@ -56,91 +54,66 @@ python -m http.server  # Python 3 — then visit http://localhost:8000
 
 ## Asset Setup
 
-All images and overlays referenced in the site live in the `/assets/` folder.
+All images referenced in the site are organized inside the `/assets/` folder by subfolder.
 
-| Filename | Used in |
+| File path | Used in |
 |---|---|
-| `hero-background-smoke.jpg` | Hero section full-screen background |
-| `smoke-overlay.png` | Hero overlay (`mix-blend-mode: screen`) |
-| `glitter-overlay.png` | Hero overlay (`mix-blend-mode: overlay`) |
-| `velvet-dark-section-background.jpg` | Experience section background |
-| `stage-spotlight-texture.jpg` | Media section background |
-| `social-banner-background.jpg` | Gallery section background |
-| `booking-section-background.jpg` | Booking section background |
-| `press-kit-background.jpg` | Final CTA section background |
-| `neon-divider-line.png` | Decorative dividers between sections |
-| `gallery-01.jpg` — `gallery-06.jpg` | Performance gallery grid |
+| `assets/backgrounds/shaolin-hero-food-truck-3840x2160.jpg` | Hero section full-screen background |
+| `assets/backgrounds/shaolin-grindhouse-texture-2048.png` | Hero grain/grindhouse overlay |
+| `assets/backgrounds/shaolin-ramen-closeup.jpg` | Find the Truck CTA section background |
+| `assets/logo/shaolin-logo-primary.png` | Header logo |
+| `assets/logo/shaolin-neon-dragon-emblem.png` | Hero section neon emblem |
+| `assets/logo/shaolin-dragon-icon.png` | Favicon, CTA section icon, footer icon |
+| `assets/about/shaolin-about-chef-portrait.jpg` | About section chef portrait |
+| `assets/menu/shaolin-menu-background-1920.jpg` | Menu section background |
+| `assets/menu/shaolin-menu-full-graphic.jpg` | Full menu poster graphic |
+| `assets/social/shaolin-social-promo-1.jpg` | OpenGraph / Twitter Card social preview image |
 
-### Hero Logo / Right-Side Visual
+### Replacing the Logo
 
-The hero right column currently shows the main brand logo PNG.
-To use a live performance video instead, open `index.html`, locate the
-`<!-- Right: Logo / Performance visual -->` comment in the `#hero` section, and
-replace the `<img>` block with the commented-out `<div class="embed-responsive">` iframe,
-substituting `YOUR_VIDEO_ID` with your real YouTube video ID.
+To swap out the header logo or neon hero emblem, drop your new PNG files into
+`assets/logo/` and update the corresponding `src` attributes in `index.html`:
 
----
+```html
+<!-- Header logo -->
+<img src="assets/logo/shaolin-logo-primary.png" … />
 
-## Replacing the Formspree Form ID
-
-The booking form uses [Formspree](https://formspree.io) to handle submissions without a backend.
-
-**Steps:**
-
-1. Create a free account at [formspree.io](https://formspree.io).
-2. Click **New Form** and give it a name (e.g. "Cass Booking").
-3. Copy the **Form ID** from the embed snippet (looks like `xpwzabcd`).
-4. Open `index.html` and find this line (inside the `#booking` section):
-
-   ```html
-   action="https://formspree.io/f/YOUR_FORM_ID"
-   ```
-
-5. Replace `YOUR_FORM_ID` with your real form ID:
-
-   ```html
-   action="https://formspree.io/f/xpwzabcd"
-   ```
-
-6. Save and push. Form submissions will now appear in your Formspree dashboard and be emailed to you.
+<!-- Hero emblem -->
+<img src="assets/logo/shaolin-neon-dragon-emblem.png" … />
+```
 
 ---
 
 ## Updating Social Links
 
-Search for `YOUR_HANDLE` / `YOUR_CHANNEL` / `YOUR_ARTIST_ID` / `YOUR_PAGE` in `index.html`
-and replace with the real social profile URLs.
+The Instagram and TikTok links in the **Find the Truck** section and the footer
+currently point to the generic homepages. Replace them with your real profile URLs.
+
+Search `index.html` for these two `href` values and update both occurrences of each:
+
+| Placeholder URL | Replace with |
+|---|---|
+| `https://www.instagram.com/` | Your Instagram profile URL |
+| `https://www.tiktok.com/` | Your TikTok profile URL |
 
 ---
 
-## Gallery Photos
+## Menu Items
 
-Drop performance photos into `/assets/` named `gallery-01.jpg` through `gallery-06.jpg`
-to populate the gallery grid. Images are displayed in a 3-column responsive grid with
-hover zoom, glow effect, and a fullscreen lightbox on click.
+The menu is written directly in `index.html` inside the `#menu` section.
+To add, remove, or reprice bowls or add-ons, edit the corresponding `<li class="menu-item">` blocks.
 
-To add more images, duplicate a `.gallery-tile` block inside the gallery grid and
-increment the filename:
+To add a new bowl:
 
 ```html
-<div class="gallery-tile" data-lightbox="assets/gallery-07.jpg" data-alt="Cass — performance photo 7"
-     tabindex="0" role="button" aria-label="View performance photo 7 fullscreen">
-  <img src="assets/gallery-07.jpg" alt="Cass performing live" loading="lazy" />
-</div>
+<li class="menu-item">
+  <div class="menu-item-header">
+    <span class="menu-item-name">Your Bowl Name</span>
+    <span class="menu-item-price">$14</span>
+  </div>
+  <p class="menu-item-desc">Description of the bowl and its ingredients.</p>
+</li>
 ```
-
----
-
-## Media Embed
-
-Replace the `VIDEO_ID` placeholder in the `#media` section to activate the YouTube embed:
-
-| Placeholder | Replace with |
-|---|---|
-| `VIDEO_ID` in the YouTube iframe src | Your YouTube video ID (e.g. `dQw4w9WgXcQ`) |
-| `YOUR_CHANNEL` in footer links | Your YouTube channel handle |
-| `YOUR_HANDLE` in social links | Your Instagram / TikTok handle |
-| `YOUR_ARTIST_ID` in Spotify footer link | Your Spotify artist ID |
 
 ---
 
@@ -148,7 +121,8 @@ Replace the `VIDEO_ID` placeholder in the `#media` section to activate the YouTu
 
 - **HTML5** — semantic, accessible markup
 - **CSS3** — custom properties, grid, flexbox, responsive breakpoints, fade-in animations
-- **Minimal JS** — gallery lightbox, media tab toggle, booking form feedback
+- **Minimal JS** — sticky header, hero parallax, hamburger menu toggle, scroll-triggered animations, dynamic copyright year
+- **Google Fonts** — Bebas Neue, Oswald, Inter
 - No external frameworks, no build tools, no dependencies
 - Hosting: **GitHub Pages** (static)
 
@@ -156,4 +130,4 @@ Replace the `VIDEO_ID` placeholder in the `#media` section to activate the YouTu
 
 ## Contact
 
-**CassidyAccasia@gmail.com** &bull; Alabama &bull; Available to Travel
+Questions or updates? Reach out at **shaolinslurp@gmail.com**

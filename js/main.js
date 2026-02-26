@@ -171,3 +171,88 @@
   }
 
 })();
+
+/* ==========================================================================
+   Phase 2: Today highlight + Open Now + Next Drop countdown
+   ========================================================================== */
+(function () {
+  'use strict';
+
+  // Schedule: JS day index (0=Sun) -> operating hours in 24h floats, null = no public hours
+  const SCHEDULE = {
+    0: null,                      // Sunday — Closed
+    1: { open: 11, close: 14 },  // Monday — Downtown Plaza 11AM–2PM
+    2: { open: 17, close: 21 },  // Tuesday — Riverside Park 5PM–9PM
+    3: { open: 11, close: 14 },  // Wednesday — Midtown Offices 11AM–2PM
+    4: { open: 18, close: 22 },  // Thursday — Brewery Night 6PM–10PM
+    5: { open: 19, close: 24 },  // Friday — Night Market 7PM–12AM
+    6: null,                      // Saturday — Private Events
+  };
+
+  const DAY_ABBR = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  const now = new Date();
+  const todayIndex = now.getDay();
+  const currentHour = now.getHours() + now.getMinutes() / 60;
+
+  // Mark today's schedule row
+  const scheduleRows = document.querySelectorAll('.schedule-row');
+  scheduleRows.forEach(function (row) {
+    const dayCell = row.querySelector('.schedule-day');
+    if (!dayCell) return;
+    if (dayCell.textContent.trim() !== DAY_ABBR[todayIndex]) return;
+
+    row.classList.add('is-today');
+
+    // Pulsing dot inside the day cell
+    const dot = document.createElement('span');
+    dot.className = 'today-pulse-dot';
+    dot.setAttribute('aria-hidden', 'true');
+    dayCell.insertBefore(dot, dayCell.firstChild);
+
+    // TODAY badge appended to the row
+    const todayBadge = document.createElement('span');
+    todayBadge.className = 'today-badge';
+    todayBadge.textContent = '🔥 TODAY';
+    row.appendChild(todayBadge);
+
+    // OPEN NOW badge if within operating hours
+    const hours = SCHEDULE[todayIndex];
+    if (hours && currentHour >= hours.open && currentHour < hours.close) {
+      const openBadge = document.createElement('span');
+      openBadge.className = 'open-now-badge';
+      openBadge.textContent = 'OPEN NOW';
+      row.appendChild(openBadge);
+    }
+  });
+
+  // Next Drop countdown
+  const countdownEl = document.getElementById('next-drop-countdown');
+  if (countdownEl) {
+    let countdownText = '';
+    const todayHours = SCHEDULE[todayIndex];
+
+    if (todayHours) {
+      if (currentHour < todayHours.open) {
+        const hoursUntil = Math.ceil(todayHours.open - currentHour);
+        countdownText = 'Next Drop In: ' + hoursUntil + ' Hour' + (hoursUntil === 1 ? '' : 's');
+      } else if (currentHour < todayHours.close) {
+        countdownText = '🔥 Open Now — Come Get Some';
+      }
+    }
+
+    if (!countdownText) {
+      // Find next day with public hours
+      for (let i = 1; i <= 7; i++) {
+        const nextDayIndex = (todayIndex + i) % 7;
+        if (SCHEDULE[nextDayIndex]) {
+          countdownText = 'Next Drop: ' + DAY_ABBR[nextDayIndex];
+          break;
+        }
+      }
+    }
+
+    countdownEl.textContent = countdownText;
+  }
+
+})();

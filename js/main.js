@@ -120,4 +120,54 @@
     });
   }
 
+  /* ------------------------------------------------------------------
+     Gallery carousel — mouse drag support
+     ------------------------------------------------------------------ */
+  const carousel = document.querySelector('.gallery-carousel');
+
+  if (carousel) {
+    let isDragging = false;
+    let startX = 0;
+    let scrollStart = 0;
+
+    carousel.addEventListener('mousedown', function (e) {
+      isDragging = true;
+      startX = e.pageX - carousel.offsetLeft;
+      scrollStart = carousel.scrollLeft;
+      carousel.style.cursor = 'grabbing';
+    });
+
+    carousel.addEventListener('mouseleave', function () {
+      isDragging = false;
+      carousel.style.cursor = '';
+    });
+
+    carousel.addEventListener('mouseup', function () {
+      isDragging = false;
+      carousel.style.cursor = '';
+    });
+
+    carousel.addEventListener('mousemove', function (e) {
+      if (!isDragging) return;
+      e.preventDefault();
+      var currentX = e.pageX - carousel.offsetLeft;
+      var dragDistance = (currentX - startX) * 1.5;
+      carousel.scrollLeft = scrollStart - dragDistance;
+    });
+  }
+
+  /* ------------------------------------------------------------------
+     Book form — confirmation message on submit
+     ------------------------------------------------------------------ */
+  var bookForm = document.getElementById('book-form');
+  var bookConfirmation = document.getElementById('book-confirmation');
+
+  if (bookForm && bookConfirmation) {
+    bookForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      bookConfirmation.hidden = false;
+      bookForm.reset();
+    });
+  }
+
 })();

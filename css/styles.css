@@ -494,6 +494,14 @@ h1, h2, h3, h4 {
   filter: drop-shadow(0 0 20px rgba(201, 162, 39, 0.55));
 }
 
+.hero-logo-fill {
+  width: min(600px, 85vw);
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 2rem;
+  filter: drop-shadow(0 0 40px rgba(201, 162, 39, 0.7));
+}
+
 .hero-title {
   font-size: clamp(3rem, 9vw, 8rem);
   letter-spacing: 0.06em;

@@ -972,10 +972,14 @@ h1, h2, h3, h4 {
 @media (max-width: 600px) {
   :root {
     --section-pad: 4rem 1.25rem;
-    --header-h: 60px;
+    --header-h: 72px;
   }
 
   /* Header */
+  .logo-img {
+    height: 56px;
+  }
+
   .hamburger {
     display: flex;
   }

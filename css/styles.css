@@ -305,13 +305,17 @@ h1, h2, h3, h4 {
   z-index: 1000;
   height: var(--header-h);
   transition: background-color var(--transition-med), box-shadow var(--transition-med);
-  background-color: transparent;
-}
-
-.site-header.scrolled {
   background-color: rgba(10, 10, 10, 0.96);
   box-shadow: 0 2px 24px rgba(0, 0, 0, 0.8);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
+}
+
+.site-header.at-top {
+  background-color: transparent;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 .header-inner {

@@ -21,9 +21,9 @@
   function updateHeader() {
     if (!header) return;
     if (window.scrollY > 40) {
-      header.classList.add('scrolled');
+      header.classList.remove('at-top');
     } else {
-      header.classList.remove('scrolled');
+      header.classList.add('at-top');
     }
   }
 

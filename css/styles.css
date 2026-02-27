@@ -421,6 +421,10 @@ h1, h2, h3, h4 {
   z-index: 1001;
 }
 
+.nav-close {
+  display: none;
+}
+
 .hamburger-bar {
   display: block;
   width: 100%;
@@ -1005,6 +1009,34 @@ h1, h2, h3, h4 {
 
   .main-nav.open {
     transform: translateX(0);
+  }
+
+  .nav-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: none;
+    color: var(--color-white);
+    font-size: 1.75rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    opacity: 0.8;
+    transition: opacity var(--transition-fast);
+  }
+
+  .nav-close:hover,
+  .nav-close:focus-visible {
+    opacity: 1;
+    outline: 2px solid var(--color-gold);
+    outline-offset: 4px;
+    border-radius: 4px;
   }
 
   body.menu-open {

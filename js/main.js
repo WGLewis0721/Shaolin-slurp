@@ -52,6 +52,7 @@
      ------------------------------------------------------------------ */
   const hamburger = document.getElementById('hamburger');
   const mainNav = document.getElementById('main-nav');
+  const navClose = document.getElementById('nav-close');
 
   function openMenu() {
     if (!hamburger || !mainNav) return;
@@ -76,6 +77,10 @@
         openMenu();
       }
     });
+  }
+
+  if (navClose) {
+    navClose.addEventListener('click', closeMenu);
   }
 
   // Close menu when a nav link is clicked

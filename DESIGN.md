@@ -1,60 +1,60 @@
-# Shaolin Slurp Ramen - WebForge Design Direction v2
+# Shaolin Slurp Ramen — WebForge Design Direction V3
 
-## Selected concept: Bayou Dojo / Food-First
-A Cajun-ramen fusion food truck identity that combines ramen-shop discipline with New Orleans street-poster energy, but now leads with **real food and truck photography** instead of abstract illustration. The goal is to make visitors hungry first, then make the route/menu/catering journey effortless.
+## Selected concept: Bayou Dojo / Street-Food Editorial
+Shaolin Slurp is a Cajun × ramen mobile noodle house. V3 moves past the previous polished-template feel and gives the brand its own visual system: loud editorial typography, poster/ticket language, original ramen illustration, a custom bowl mark, saffron/red/ink color blocking, strong food crops, and a route-first mobile experience.
 
 ## Customer jobs
 1. Know where the truck is serving.
-2. See the menu and prices quickly on a phone.
-3. Understand the Cajun + ramen idea without reading a long story.
-4. Book catering/private events.
+2. See bowls and prices quickly on a phone.
+3. Understand the Cajun + ramen idea at a glance.
+4. Book the truck for private events.
 
-## Palette
-- Cream `#F1E3C8` - primary surface
-- Paper `#F6ECD9` - secondary surface
-- Ink `#0D1512` - structure / typography
-- Swamp `#173B32` - deep brand field
-- Cajun red `#B72A31` - action / heat
-- Saffron gold `#D3A43A` - supporting accent
-- Pepper `#E16031` - small heat cue
+## Visual system
+- Cream `#F3E6CA` — warm paper surface
+- Paper `#FBF1DC` — light editorial field
+- Ink `#101713` — deep structure
+- Swamp `#16372F` — menu / night-service field
+- Cajun red `#B72A31` — action / heat
+- Dark red `#8B1F25` — signature-bowl field
+- Saffron `#D7A52F` — appetite / accent
+- Pepper `#E25F32` — secondary heat cue
 
-## Typography
-- Display: Bebas Neue - loud food-truck/poster headlines.
-- Accent serif: Cormorant Garamond - premium editorial contrast.
-- Body: DM Sans.
-- Utility: IBM Plex Mono.
+Typography remains intentionally mixed:
+- Bebas Neue — oversized street-poster display
+- Cormorant Garamond — expressive editorial contrast
+- DM Sans — body copy
+- IBM Plex Mono — route, labels, utility copy
 
-## Layout language
-- Photography dominates high-impact moments.
-- Oversized condensed type + restrained serif accents.
-- Visible rules, printed-menu details, stamps/seals, strong color fields.
-- Mostly square corners; no glassmorphism, generic gradient cards, or pill-heavy UI.
-- Route comes immediately after the hero; signature bowl follows before the deeper brand story.
-- Menu stays intentionally small and scannable.
+## V3 original assets
+- `assets/v3/shaolin-bowl-mark.svg` — custom ramen/chopsticks/heat emblem created specifically for Shaolin Slurp.
+- `assets/v3/bayou-tonkotsu-illustration.svg` — custom illustrated Cajun ramen bowl with egg, andouille, okra, noodles, chili crisp, and branded chopsticks.
+- Procedural grain, poster fields, route ticket treatment, ingredient rhythm, and fusion ledger are all brand-specific CSS treatments.
 
-## Primary experience
-Hero: truck + bowl photography, Bayou Dojo positioning, next-stop strip.
-Route: highly scannable weekly schedule.
-Signature bowl: food-first proof of the fusion concept.
-Fusion story: Louisiana pantry x ramen technique.
-Menu: bowls/sides/drinks with clear prices and heat levels.
-Street service: truck/event visual proof.
-Catering: direct email-based static form for GitHub Pages.
+## Composition
+- Hero combines the food truck backdrop with an original illustrated hero bowl instead of repeating the same food photography.
+- Route immediately follows the hero and dynamically promotes the next scheduled stop.
+- Signature bowl is cinematic and image-led.
+- Fusion story is presented as a pantry × technique ledger rather than generic feature cards.
+- Menu uses live data plus a branded field-guide illustration.
+- Street-service section mixes truck photography with a red event poster to vary rhythm.
+- Catering remains a direct email-based static interaction suitable for GitHub Pages.
 
-## Motion
-- Small reveal transitions only.
-- No decorative auto-play video in this demo.
-- Respect `prefers-reduced-motion`.
+## Motion and interaction
+- Restrained reveal motion.
+- Continuous ingredient ticker on capable devices.
+- Motion disabled under `prefers-reduced-motion`.
+- Mobile navigation locks body scroll and neutralizes header blur to avoid the historical iOS stacking bug.
+- Menu categories stay interactive through `site-data.js`.
 
 ## Content integrity
-- Existing email is retained.
-- Weekly route, prices, and recipes are clearly treated as demo content until verified.
-- No invented awards, testimonials, operating locations, or business history.
+- Existing business email is retained.
+- Route, menu prices, and recipes remain explicitly labeled demo content until client verification.
+- No fabricated awards, testimonials, history, or operating claims.
 
 ## Implementation
-- Preserve static GitHub Pages architecture: HTML/CSS/vanilla JS.
-- `js/site-data.js` centralizes schedule, menu, brand tokens, and SEO values.
-- `.webforge/design-os.html` remains a development-only control surface.
+- Static GitHub Pages: HTML + CSS + vanilla JavaScript.
+- `js/site-data.js` remains the editable source for menu and schedule content.
+- V3 intentionally avoids a framework or backend so the prototype stays portable and inexpensive.
 
 ## Quality target
-The previous pass was visually competent but too flat and looked like a design-system demo rather than a food brand. V2 specifically corrects that by increasing photography, appetite appeal, contrast, pacing, visual hierarchy, and brand-specific storytelling while keeping the route/menu/catering UX simple.
+The V3 target is an 8.5–9/10 visual demo: recognizably Shaolin Slurp, not a generic restaurant template. Future work should refine verified content and photography rather than reset the core art direction.

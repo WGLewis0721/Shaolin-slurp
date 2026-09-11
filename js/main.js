@@ -1,349 +1,45 @@
-/* ==========================================================================
-   Shaolin Slurp Ramen — Main JavaScript
-   ========================================================================== */
-
 (function () {
   'use strict';
+  const data = window.SHAOLIN_SITE || {};
+  const $ = (s, c=document) => c.querySelector(s);
+  const $$ = (s, c=document) => Array.from(c.querySelectorAll(s));
 
-  /* ------------------------------------------------------------------
-     Dynamic copyright year
-     ------------------------------------------------------------------ */
-  const yearEl = document.getElementById('year');
-  if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
+  const year = $('#year'); if (year) year.textContent = new Date().getFullYear();
+
+  const header = $('#site-header');
+  const toggle = $('#menu-toggle'); const nav = $('#main-nav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => { const open = nav.classList.toggle('open'); toggle.setAttribute('aria-expanded', String(open)); });
+    $$('#main-nav a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }));
   }
+  window.addEventListener('scroll', () => header && header.classList.toggle('scrolled', window.scrollY > 20), {passive:true});
 
-  /* ------------------------------------------------------------------
-     Sticky header: transparent → solid on scroll
-     ------------------------------------------------------------------ */
-  const header = document.getElementById('site-header');
+  const reveal = $$('.reveal');
+  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const io = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);} }), {threshold:.12});
+    reveal.forEach(el => io.observe(el));
+  } else reveal.forEach(el => el.classList.add('in'));
 
-  function updateHeader() {
-    if (!header) return;
-    if (window.scrollY > 40) {
-      header.classList.remove('at-top');
-    } else {
-      header.classList.add('at-top');
-    }
+  const scheduleList = $('#schedule-list');
+  if (scheduleList && data.schedule) {
+    scheduleList.innerHTML = data.schedule.map((x,i) => `<article class="route-row ${i===0?'route-row-featured':''}"><div class="route-day">${x.day}</div><div><strong>${x.place}</strong><span>${x.note}</span></div><div class="route-time">${x.time}</div></article>`).join('');
   }
+  const status = $('#route-status');
+  if (status) status.innerHTML = '<span class="status-dot"></span><strong>DEMO ROUTE</strong><span>Replace with confirmed weekly stops before launch.</span>';
 
-  window.addEventListener('scroll', updateHeader, { passive: true });
-  updateHeader();
-
-  /* ------------------------------------------------------------------
-     Hero parallax
-     ------------------------------------------------------------------ */
-  const heroBgImg = document.querySelector('.hero-bg-img');
-
-  function updateParallax() {
-    if (!heroBgImg) return;
-    const scrolled = window.scrollY;
-    const factor = 0.35;
-    heroBgImg.style.transform = 'scale(1.08) translateY(' + scrolled * factor + 'px)';
+  const menuGrid = $('#menu-grid');
+  function renderMenu(cat){
+    if (!menuGrid || !data.menu || !data.menu[cat]) return;
+    menuGrid.innerHTML = data.menu[cat].map((x,i)=>`<article class="dish-card reveal in"><div class="dish-number">0${i+1}</div><div class="dish-top"><span class="dish-badge">${x.badge||''}</span><span class="dish-price">${x.price}</span></div><h3>${x.name}</h3><p>${x.desc}</p>${x.heat?`<div class="heat"><span>HEAT</span><b class="heat-${x.heat.toLowerCase()}">${x.heat}</b></div>`:''}</article>`).join('');
   }
+  renderMenu('bowls');
+  $$('.menu-tab').forEach(btn => btn.addEventListener('click', () => { $$('.menu-tab').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); renderMenu(btn.dataset.menuFilter); }));
 
-  // Only apply parallax if user hasn't requested reduced motion
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    window.addEventListener('scroll', updateParallax, { passive: true });
-  }
-
-  /* ------------------------------------------------------------------
-     Hamburger menu toggle
-     ------------------------------------------------------------------ */
-  const hamburger = document.getElementById('hamburger');
-  const mainNav = document.getElementById('main-nav');
-  const navClose = document.getElementById('nav-close');
-
-  function openMenu() {
-    if (!hamburger || !mainNav) return;
-    mainNav.classList.add('open');
-    hamburger.setAttribute('aria-expanded', 'true');
-    document.body.classList.add('menu-open');
-  }
-
-  function closeMenu() {
-    if (!hamburger || !mainNav) return;
-    mainNav.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', 'false');
-    document.body.classList.remove('menu-open');
-  }
-
-  if (hamburger) {
-    hamburger.addEventListener('click', function () {
-      const isOpen = mainNav && mainNav.classList.contains('open');
-      if (isOpen) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
-    });
-  }
-
-  if (navClose) {
-    navClose.addEventListener('click', closeMenu);
-  }
-
-  // Close menu when a nav link is clicked
-  if (mainNav) {
-    mainNav.querySelectorAll('.nav-link').forEach(function (link) {
-      link.addEventListener('click', closeMenu);
-    });
-  }
-
-  // Close menu on Escape key
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-      closeMenu();
-    }
+  const form = $('#catering-form');
+  if (form) form.addEventListener('submit', e => {
+    e.preventDefault();
+    const fd = new FormData(form);
+    const body = `Name: ${fd.get('name')||''}%0AEmail: ${fd.get('email')||''}%0AEvent date: ${fd.get('date')||''}%0AHeadcount: ${fd.get('headcount')||''}%0ALocation: ${fd.get('location')||''}%0A%0A${encodeURIComponent(fd.get('details')||'')}`;
+    location.href = `mailto:${data.brand?.email || 'shaolinslurp@gmail.com'}?subject=Shaolin%20Slurp%20Catering%20Inquiry&body=${body}`;
   });
-
-  /* ------------------------------------------------------------------
-     Scroll-triggered fade-in animations
-     ------------------------------------------------------------------ */
-  const animatedEls = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right');
-
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    animatedEls.forEach(function (el) {
-      observer.observe(el);
-    });
-  } else {
-    // Fallback: show all elements for older browsers
-    animatedEls.forEach(function (el) {
-      el.classList.add('in-view');
-    });
-  }
-
-  /* ------------------------------------------------------------------
-     Gallery carousel — mouse drag support
-     ------------------------------------------------------------------ */
-  const carousel = document.querySelector('.gallery-carousel');
-
-  if (carousel) {
-    let isDragging = false;
-    let startX = 0;
-    let scrollStart = 0;
-
-    carousel.addEventListener('mousedown', function (e) {
-      isDragging = true;
-      startX = e.pageX - carousel.offsetLeft;
-      scrollStart = carousel.scrollLeft;
-      carousel.style.cursor = 'grabbing';
-    });
-
-    carousel.addEventListener('mouseleave', function () {
-      isDragging = false;
-      carousel.style.cursor = '';
-    });
-
-    carousel.addEventListener('mouseup', function () {
-      isDragging = false;
-      carousel.style.cursor = '';
-    });
-
-    carousel.addEventListener('mousemove', function (e) {
-      if (!isDragging) return;
-      e.preventDefault();
-      var currentX = e.pageX - carousel.offsetLeft;
-      var dragDistance = (currentX - startX) * 1.5;
-      carousel.scrollLeft = scrollStart - dragDistance;
-    });
-  }
-
-  /* ------------------------------------------------------------------
-     Book form — confirmation message on submit
-     ------------------------------------------------------------------ */
-  var bookForm = document.getElementById('book-form');
-  var bookConfirmation = document.getElementById('book-confirmation');
-
-  if (bookForm && bookConfirmation) {
-    bookForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      bookConfirmation.hidden = false;
-      bookForm.reset();
-    });
-  }
-
-})();
-
-/* ==========================================================================
-   Phase 2: Today highlight + Open Now + Next Drop countdown
-   ========================================================================== */
-(function () {
-  'use strict';
-
-  // Schedule: JS day index (0=Sun) -> operating hours in 24h floats, null = no public hours
-  const SCHEDULE = {
-    0: null,                      // Sunday — Closed
-    1: { open: 11, close: 14 },  // Monday — Downtown Plaza 11AM–2PM
-    2: { open: 17, close: 21 },  // Tuesday — Riverside Park 5PM–9PM
-    3: { open: 11, close: 14 },  // Wednesday — Midtown Offices 11AM–2PM
-    4: { open: 18, close: 22 },  // Thursday — Brewery Night 6PM–10PM
-    5: { open: 19, close: 24 },  // Friday — Night Market 7PM–12AM
-    6: null,                      // Saturday — Private Events
-  };
-
-  const DAY_ABBR = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
-  const now = new Date();
-  const todayIndex = now.getDay();
-  const currentHour = now.getHours() + now.getMinutes() / 60;
-
-  // Mark today's schedule row
-  const scheduleRows = document.querySelectorAll('.schedule-row');
-  scheduleRows.forEach(function (row) {
-    const dayCell = row.querySelector('.schedule-day');
-    if (!dayCell) return;
-    if (dayCell.textContent.trim() !== DAY_ABBR[todayIndex]) return;
-
-    row.classList.add('is-today');
-
-    // Pulsing dot inside the day cell
-    const dot = document.createElement('span');
-    dot.className = 'today-pulse-dot';
-    dot.setAttribute('aria-hidden', 'true');
-    dayCell.insertBefore(dot, dayCell.firstChild);
-
-    // TODAY badge appended to the row
-    const todayBadge = document.createElement('span');
-    todayBadge.className = 'today-badge';
-    todayBadge.textContent = '🔥 TODAY';
-    row.appendChild(todayBadge);
-
-    // OPEN NOW badge if within operating hours
-    const hours = SCHEDULE[todayIndex];
-    if (hours && currentHour >= hours.open && currentHour < hours.close) {
-      const openBadge = document.createElement('span');
-      openBadge.className = 'open-now-badge';
-      openBadge.textContent = 'OPEN NOW';
-      row.appendChild(openBadge);
-    }
-  });
-
-  // Next Drop countdown
-  const countdownEl = document.getElementById('next-drop-countdown');
-  if (countdownEl) {
-    let countdownText = '';
-    const todayHours = SCHEDULE[todayIndex];
-
-    if (todayHours) {
-      if (currentHour < todayHours.open) {
-        const hoursUntil = Math.ceil(todayHours.open - currentHour);
-        countdownText = 'Next Drop In: ' + hoursUntil + ' Hour' + (hoursUntil === 1 ? '' : 's');
-      } else if (currentHour < todayHours.close) {
-        countdownText = '🔥 Open Now — Come Get Some';
-      }
-    }
-
-    if (!countdownText) {
-      // Find next day with public hours
-      for (let i = 1; i <= 7; i++) {
-        const nextDayIndex = (todayIndex + i) % 7;
-        if (SCHEDULE[nextDayIndex]) {
-          countdownText = 'Next Drop: ' + DAY_ABBR[nextDayIndex];
-          break;
-        }
-      }
-    }
-
-    countdownEl.textContent = countdownText;
-  }
-
-})();
-
-// Bushido About Enhancements
-(function () {
-  'use strict';
-
-  // -----------------------------------------------------------------------
-  // Timeline spine — animates downward via Intersection Observer
-  // -----------------------------------------------------------------------
-  const spine = document.querySelector('.bb-tl-spine');
-
-  if (spine) {
-    if ('IntersectionObserver' in window) {
-      const spineObserver = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              spine.classList.add('bb-tl-spine--visible');
-              spineObserver.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.05 }
-      );
-      spineObserver.observe(spine.parentElement);
-    } else {
-      spine.classList.add('bb-tl-spine--visible');
-    }
-  }
-
-  // -----------------------------------------------------------------------
-  // Timeline entries — staggered fade-in via Intersection Observer
-  // -----------------------------------------------------------------------
-  const tlEntries = document.querySelectorAll('.bb-tl-entry');
-
-  if (tlEntries.length) {
-    if ('IntersectionObserver' in window) {
-      const entryObserver = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              const idx = Array.from(tlEntries).indexOf(entry.target);
-              const delay = idx * 120;
-              setTimeout(function () {
-                entry.target.classList.add('bb-tl-entry--visible');
-              }, delay);
-              entryObserver.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.15 }
-      );
-      tlEntries.forEach(function (el) {
-        entryObserver.observe(el);
-      });
-    } else {
-      tlEntries.forEach(function (el) {
-        el.classList.add('bb-tl-entry--visible');
-      });
-    }
-  }
-
-  // -----------------------------------------------------------------------
-  // Hero chevron — hide when hero section is mostly scrolled past
-  // -----------------------------------------------------------------------
-  const chevron = document.querySelector('.bb-chevron');
-  const bbHero = document.querySelector('.bb-hero');
-
-  if (chevron && bbHero) {
-    if ('IntersectionObserver' in window) {
-      const chevronObserver = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.intersectionRatio < 0.5) {
-              chevron.classList.add('bb-chevron--hidden');
-            } else {
-              chevron.classList.remove('bb-chevron--hidden');
-            }
-          });
-        },
-        { threshold: [0.4, 0.5, 0.6] }
-      );
-      chevronObserver.observe(bbHero);
-    }
-  }
-
 })();

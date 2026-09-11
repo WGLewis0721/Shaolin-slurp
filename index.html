@@ -21,6 +21,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,600;1,700&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="assets/logo/shaolin-dragon-icon.png" />
   <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/v3-fixes.css" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FoodEstablishment","name":"Shaolin Slurp Ramen","url":"https://wglewis0721.github.io/Shaolin-slurp/","servesCuisine":["Ramen","Cajun","Fusion"],"email":"shaolinslurp@gmail.com"}</script>
 </head>
 <body>
@@ -85,11 +86,11 @@
   <section class="menu-section section" id="menu">
     <div class="menu-heading reveal"><div><div class="section-kicker section-kicker-gold">THE MENU / SMALL ON PURPOSE</div><h2>Four bowls.<br><em>Zero filler.</em></h2></div><div class="menu-note"><span>01</span><p>Fast enough for a truck. Distinct enough to remember. Prices and recipes are demo content until client verification.</p></div></div>
     <div class="menu-tabs" role="tablist" aria-label="Menu categories">
-      <button class="menu-tab active" role="tab" aria-selected="true" aria-controls="menu-grid" tabindex="0" data-menu-filter="bowls">Bowls</button>
-      <button class="menu-tab" role="tab" aria-selected="false" aria-controls="menu-grid" tabindex="-1" data-menu-filter="sides">Sides</button>
-      <button class="menu-tab" role="tab" aria-selected="false" aria-controls="menu-grid" tabindex="-1" data-menu-filter="drinks">Drinks</button>
+      <button class="menu-tab active" type="button" role="tab" aria-selected="true" aria-controls="menu-grid" tabindex="0" data-menu-filter="bowls">Bowls</button>
+      <button class="menu-tab" type="button" role="tab" aria-selected="false" aria-controls="menu-grid" tabindex="-1" data-menu-filter="sides">Sides</button>
+      <button class="menu-tab" type="button" role="tab" aria-selected="false" aria-controls="menu-grid" tabindex="-1" data-menu-filter="drinks">Drinks</button>
     </div>
-    <div class="menu-shell"><div id="menu-grid" class="menu-grid" role="tabpanel"></div><aside class="menu-art reveal"><div class="menu-art-label">BAYOU DOJO / FIELD GUIDE</div><img src="assets/v3/bayou-tonkotsu-illustration.svg" width="820" height="720" alt="Illustrated Bayou Tonkotsu ramen bowl" loading="lazy" /><div class="menu-art-copy"><strong>SLURP CODE</strong><span>Broth first.</span><span>Noodles fast.</span><span>Heat by choice.</span><span>No timid bowls.</span></div></aside></div>
+    <div class="menu-shell"><div id="menu-grid" class="menu-grid" role="tabpanel" aria-live="polite"></div><aside class="menu-art reveal"><div class="menu-art-label">BAYOU DOJO / FIELD GUIDE</div><img src="assets/v3/bayou-tonkotsu-illustration.svg" width="820" height="720" alt="Illustrated Bayou Tonkotsu ramen bowl" loading="lazy" /><div class="menu-art-copy"><strong>SLURP CODE</strong><span>Broth first.</span><span>Noodles fast.</span><span>Heat by choice.</span><span>No timid bowls.</span></div></aside></div>
   </section>
 
   <section class="street-section">

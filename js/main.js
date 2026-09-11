@@ -8,34 +8,52 @@
   if (year) year.textContent = new Date().getFullYear();
 
   const header = $('#site-header');
-  const toggle = $('#menu-toggle');
+  const toggle = $('#menu-toggle') || $('#hamburger');
   const nav = $('#main-nav');
   const setMenu = (open) => {
     if (!toggle || !nav) return;
     nav.classList.toggle('open', open);
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.body.classList.toggle('menu-open', open);
     document.body.style.overflow = open ? 'hidden' : '';
-    if (header) header.style.backdropFilter = open ? 'none' : '';
+    if (header) {
+      header.style.backdropFilter = open ? 'none' : '';
+      header.style.webkitBackdropFilter = open ? 'none' : '';
+    }
   };
   if (toggle && nav) {
     toggle.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
     $$('#main-nav a').forEach(a => a.addEventListener('click', () => setMenu(false)));
     document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
   }
-  window.addEventListener('scroll', () => header && header.classList.toggle('scrolled', window.scrollY > 24), {passive:true});
 
-  const reveal = $$('.reveal');
+  const onScroll = () => {
+    if (header) {
+      header.classList.toggle('scrolled', window.scrollY > 24);
+      header.classList.toggle('at-top', window.scrollY <= 24);
+    }
+    const chevron = $('.bb-chevron');
+    if (chevron) chevron.classList.toggle('bb-chevron--hidden', window.scrollY > 80);
+  };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  const reveal = $$('.reveal, .fade-in, .fade-in-left, .fade-in-right');
+  const show = el => {
+    el.classList.add('in');
+    el.classList.add('in-view');
+  };
   if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const io = new IntersectionObserver(entries => entries.forEach(e => {
       if (e.isIntersecting) {
-        e.target.classList.add('in');
+        show(e.target);
         io.unobserve(e.target);
       }
     }), {threshold:.1});
     reveal.forEach(el => io.observe(el));
   } else {
-    reveal.forEach(el => el.classList.add('in'));
+    reveal.forEach(show);
   }
 
   const schedule = Array.isArray(data.schedule) ? data.schedule : [];
@@ -47,7 +65,7 @@
 
   const scheduleList = $('#schedule-list');
   if (scheduleList && schedule.length) {
-    scheduleList.innerHTML = schedule.map((x, i) => `
+    scheduleList.innerHTML = schedule.map(x => `
       <article class="route-row ${x === nextStop ? 'route-row-featured' : ''}">
         <div class="route-day">${x.day}</div>
         <div><strong>${x.place}</strong><span>${x.note}</span></div>
@@ -73,13 +91,16 @@
       </article>`).join('');
   }
   renderMenu('bowls');
+
   $$('.menu-tab').forEach(btn => btn.addEventListener('click', () => {
     $$('.menu-tab').forEach(b => {
       b.classList.remove('active');
       b.setAttribute('aria-selected', 'false');
+      b.setAttribute('tabindex', '-1');
     });
     btn.classList.add('active');
     btn.setAttribute('aria-selected', 'true');
+    btn.setAttribute('tabindex', '0');
     renderMenu(btn.dataset.menuFilter);
   }));
 

@@ -10,15 +10,18 @@
   const header = $('#site-header');
   const toggle = $('#menu-toggle');
   const nav = $('#main-nav');
+  const setMenu = (open) => {
+    if (!toggle || !nav) return;
+    nav.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.body.style.overflow = open ? 'hidden' : '';
+    if (header) header.style.backdropFilter = open ? 'none' : '';
+  };
   if (toggle && nav) {
-    toggle.addEventListener('click', () => {
-      const open = nav.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', String(open));
-    });
-    $$('#main-nav a').forEach(a => a.addEventListener('click', () => {
-      nav.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-    }));
+    toggle.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
+    $$('#main-nav a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
   }
   window.addEventListener('scroll', () => header && header.classList.toggle('scrolled', window.scrollY > 24), {passive:true});
 
@@ -36,14 +39,16 @@
   }
 
   const schedule = Array.isArray(data.schedule) ? data.schedule : [];
-  const nextStop = schedule[0];
+  const dayIndex = { SUN:0, MON:1, TUE:2, WED:3, THU:4, FRI:5, SAT:6 };
+  const today = new Date().getDay();
+  const nextStop = schedule.find(x => (dayIndex[x.day] ?? 7) >= today) || schedule[0];
   const heroStop = $('#hero-next-stop');
   if (heroStop && nextStop) heroStop.textContent = `${nextStop.day} / ${nextStop.place} / ${nextStop.time}`;
 
   const scheduleList = $('#schedule-list');
   if (scheduleList && schedule.length) {
     scheduleList.innerHTML = schedule.map((x, i) => `
-      <article class="route-row ${i===0?'route-row-featured':''}">
+      <article class="route-row ${x === nextStop ? 'route-row-featured' : ''}">
         <div class="route-day">${x.day}</div>
         <div><strong>${x.place}</strong><span>${x.note}</span></div>
         <div class="route-time">${x.time}</div>
@@ -69,8 +74,12 @@
   }
   renderMenu('bowls');
   $$('.menu-tab').forEach(btn => btn.addEventListener('click', () => {
-    $$('.menu-tab').forEach(b => b.classList.remove('active'));
+    $$('.menu-tab').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-selected', 'false');
+    });
     btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
     renderMenu(btn.dataset.menuFilter);
   }));
 

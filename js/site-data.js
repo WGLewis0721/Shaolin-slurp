@@ -2,15 +2,17 @@ window.SHAOLIN_SITE = {
   brand: {
     name: "Shaolin Slurp Ramen",
     concept: "Cajun-ramen fusion food truck",
+    tagline: "Bayou broth. Ramen backbone.",
     email: "shaolinslurp@gmail.com"
   },
   tokens: {
-    cream: "#f4e6cc",
-    ink: "#111715",
+    cream: "#f1e3c8",
+    paper: "#f6ecd9",
+    ink: "#0d1512",
     swamp: "#173b32",
-    red: "#b62631",
-    gold: "#d6a43c",
-    pepper: "#e55c2f"
+    red: "#b72a31",
+    gold: "#d3a43a",
+    pepper: "#e16031"
   },
   schedule: [
     { day: "MON", place: "Downtown Plaza", time: "11AM-2PM", note: "Lunch run" },
@@ -39,6 +41,6 @@ window.SHAOLIN_SITE = {
   },
   seo: {
     title: "Shaolin Slurp Ramen | Cajun-Ramen Food Truck",
-    description: "Shaolin Slurp is a Cajun-ramen fusion food truck serving bold broths, Gulf Coast flavor, and ramen-shop craft. Check the weekly route, menu, and catering."
+    description: "Shaolin Slurp is a Cajun-ramen fusion food truck serving slow-built broth, Gulf Coast flavor, bold bowls, and private-event catering."
   }
 };

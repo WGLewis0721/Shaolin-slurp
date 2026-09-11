@@ -1,0 +1,26 @@
+/* Bayou Broth photography layer — keeps the V3 system intact while replacing generic concept imagery. */
+.hero-media img{filter:saturate(.76) contrast(1.08) brightness(.5) blur(.25px);transform:scale(1.055)}
+.hero-art{min-height:560px}.hero-art>img{width:min(540px,100%);aspect-ratio:4/5;object-fit:cover;border:8px solid var(--cream);outline:2px solid var(--ink);box-shadow:18px 22px 0 var(--red),0 36px 38px rgba(0,0,0,.34);transform:rotate(-2deg);filter:saturate(.94) contrast(1.04)}
+.hero-art:before{width:72%;height:78%;transform:rotate(4deg)}
+.hero-art-stamp{right:0;bottom:1%}
+.signature-media img{object-position:center 48%;filter:saturate(.92) contrast(1.08)}
+
+.field-notes{position:relative;background:var(--ink);color:var(--cream);padding:clamp(84px,8vw,138px) var(--pad);overflow:hidden}
+.field-notes:before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 75% 10%,rgba(215,165,47,.1),transparent 28%),linear-gradient(120deg,transparent 0 64%,rgba(183,42,49,.09) 64% 100%)}
+.field-notes-head{position:relative;z-index:1;max-width:var(--max);margin:0 auto 38px;display:grid;grid-template-columns:1fr .8fr;gap:clamp(30px,6vw,90px);align-items:end}
+.field-notes h2{margin:0;font:400 clamp(72px,7.5vw,132px)/.76 var(--display);letter-spacing:-.02em;text-transform:uppercase}
+.field-notes h2 em{display:block;color:var(--gold);font-size:.74em}
+.field-notes-intro{max-width:510px;margin:0;color:rgba(243,230,202,.68);font-size:15px;line-height:1.75;border-left:1px solid rgba(243,230,202,.22);padding-left:24px}
+.field-notes-grid{position:relative;z-index:1;max-width:var(--max);margin:auto;display:grid;grid-template-columns:1.1fr .9fr .58fr;grid-template-rows:minmax(270px,36vw) minmax(240px,28vw);gap:12px}
+.field-shot{position:relative;margin:0;overflow:hidden;background:#151b19;border:1px solid rgba(243,230,202,.14)}
+.field-shot img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.65,.25,1),filter .35s;filter:saturate(.92) contrast(1.04)}
+.field-shot:hover img{transform:scale(1.025)}
+.field-shot figcaption{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;gap:16px;align-items:end;padding:18px;background:linear-gradient(transparent,rgba(8,13,11,.92));font:600 8px var(--mono);letter-spacing:.09em;text-transform:uppercase}
+.field-shot figcaption strong{font:26px/1 var(--display);letter-spacing:.02em;color:var(--cream)}
+.field-shot--noodles{grid-row:1/3}.field-shot--bao{grid-column:2}.field-shot--sauce{grid-column:3;grid-row:1/3}.field-shot--cup{grid-column:2}
+.field-shot--sauce img{object-position:center}.field-shot--cup img{object-position:center 62%}
+.street-photo img{filter:saturate(.8) contrast(1.08) brightness(.82);object-position:center}
+
+@media(max-width:1000px){.hero-art{min-height:470px}.field-notes-grid{grid-template-columns:1fr 1fr;grid-template-rows:430px 310px 380px}.field-shot--noodles{grid-row:auto}.field-shot--bao{grid-column:auto}.field-shot--sauce{grid-column:2;grid-row:1/3}.field-shot--cup{grid-column:1/3}.field-notes-head{grid-template-columns:1fr}}
+@media(max-width:720px){.hero-art{min-height:390px}.hero-art>img{width:min(78vw,390px);border-width:5px;box-shadow:10px 13px 0 var(--red),0 24px 28px rgba(0,0,0,.3)}.field-notes{padding-bottom:92px}.field-notes-head{margin-bottom:26px}.field-notes-intro{padding-left:16px}.field-notes-grid{grid-template-columns:1fr 1fr;grid-template-rows:310px 250px 300px;gap:7px}.field-shot--noodles{grid-column:1/3}.field-shot--sauce{grid-column:2;grid-row:2}.field-shot--bao{grid-column:1;grid-row:2}.field-shot--cup{grid-column:1/3;grid-row:3}.field-shot figcaption{padding:13px}.field-shot figcaption strong{font-size:21px}}
+@media(max-width:430px){.field-notes-grid{grid-template-rows:270px 220px 250px}.field-shot figcaption span{display:none}}

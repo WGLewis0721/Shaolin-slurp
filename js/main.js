@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  const data = window.SHAOLIN_SITE || {};
+  const data = window.BAYOU_BROTH_SITE || {};
   const $ = (s, c=document) => c.querySelector(s);
   const $$ = (s, c=document) => Array.from(c.querySelectorAll(s));
 
@@ -134,7 +134,7 @@
       '',
       fd.get('details') || ''
     ].join('\n');
-    const subject = encodeURIComponent('Shaolin Slurp Catering Inquiry');
+    const subject = encodeURIComponent('Bayou Broth Catering Inquiry');
     const body = encodeURIComponent(details);
     location.href = `mailto:${data.brand?.email || 'shaolinslurp@gmail.com'}?subject=${subject}&body=${body}`;
   });

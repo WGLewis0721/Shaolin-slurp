@@ -5,7 +5,7 @@ V2 improved hierarchy and photography but still leaned too heavily on repeated i
 
 ## V3 corrective changes
 - Rebuilt the hero around a new custom Bayou Tonkotsu illustration plus the truck backdrop.
-- Added an original Shaolin bowl brand mark.
+- Added an original bowl brand mark, now the Bayou Broth mark.
 - Replaced repeated card patterns with a route ticket, fusion ledger, event poster, ingredient rhythm, and editorial image/text splits.
 - Reduced repeated use of the ramen photo; custom illustration now carries major branded moments.
 - Strengthened mobile hierarchy and made the route / menu / catering journey more immediate.
@@ -18,7 +18,7 @@ V2 improved hierarchy and photography but still leaned too heavily on repeated i
 - Replaced the dated Bushido timeline with clearly labeled brand mythology chapters to avoid presenting invented operating history as fact.
 - Removed placeholder generic social destinations from the Bushido footer.
 - Explicitly excluded `.webforge/` development controls from the GitHub Pages build.
-- Kept `site-data.js` as the single editable menu/schedule source.
+- Kept `site-data.js` as the single editable menu/schedule source (now `window.BAYOU_BROTH_SITE`).
 - Preserved the mailto catering workflow and static GitHub Pages deployment model.
 
 ## Astra carryover QA status
@@ -49,8 +49,17 @@ The material issues from the previous review are now addressed:
 1. Replace demo route with verified serving locations and hours.
 2. Confirm bowl names, ingredients, prices, and heat levels.
 3. Confirm final social profiles and ordering strategy.
-4. Replace or augment demo photography with final owner-approved Shaolin Slurp food/truck photography if available.
+4. Replace or augment the Bayou Broth concept photography with final owner-approved food/truck photography.
 5. Connect a real ordering system only if online ordering is part of the business model.
 
+## Bayou Broth rebrand pass
+- Renamed all customer-facing copy, metadata, JSON-LD, wordmark, and favicon from Shaolin Slurp to **Bayou Broth**.
+- Hero now uses `bayou-broth-truck-market.webp` as the environment and `bayou-broth-house-bowl.webp` as the primary food visual.
+- Signature bowl uses `bayou-broth-shrimp-ramen.webp`; `assets/backgrounds/shaolin-ramen-closeup.jpg` no longer appears on the public site.
+- Added the "Built for street service." field-notes editorial spread (noodle lift, bao, Cajun heat sauce, branded cup).
+- Labels updated: `THE BAYOU DOJO` → `BAYOU BROTH`, `BAYOU DOJO / FIELD GUIDE` → `BAYOU BROTH / FIELD GUIDE`, `SLURP CODE` → `BROTH CODE`, `SHAOLIN SLURP PRESENTS` → `BAYOU BROTH PRESENTS`.
+- Page weight dropped from ~5 MB of JPEG/PNG to well under 100 KB of WebP/SVG imagery; the hero image is preloaded and every below-the-fold image is lazy-loaded with intrinsic dimensions.
+- `about-bushido.html` rebranded and moved onto the same lightweight image set.
+
 ## Do not regress
-Future edits should not replace V3 with generic glass cards, gradient SaaS sections, excessive rounded pills, or another stock restaurant template. Build on the Bayou Dojo street-poster system instead.
+Future edits should not replace V3 with generic glass cards, gradient SaaS sections, excessive rounded pills, or another stock restaurant template. Build on the Bayou Broth street-poster system instead.

@@ -76,7 +76,9 @@ The bowl should still read as ramen first, with Louisiana ingredients integrated
 6. **Table/lifestyle** — one or two finished bowls on a picnic table with napkins, drink, and ordinary food-truck context.
 
 ## Existing design system
-- Original bowl mark: `assets/v3/shaolin-bowl-mark.svg` — legacy asset; should be renamed/redrawn for Bayou Broth before final launch
+- Bowl mark: `assets/bayou-broth/bayou-broth-bowl-mark.svg` — live Bayou Broth mark used in the header, story block, footer, and favicon
+- Bayou Broth photography: `assets/bayou-broth/*.webp` — hero truck, house bowl, shrimp ramen, noodle lift, bao, Cajun heat sauce, branded cup
+- Legacy mark: `assets/v3/shaolin-bowl-mark.svg` — superseded, no longer referenced by the public site
 - Bayou Tonkotsu illustration: `assets/v3/bayou-tonkotsu-illustration.svg` — concept asset; use selectively, not as a substitute for final photography
 - Cream, swamp green, Cajun red, saffron, and ink palette
 - Responsive route/menu/catering behavior
@@ -86,11 +88,16 @@ The bowl should still read as ramen first, with Louisiana ingredients integrated
 - `index.html` — public homepage
 - `css/styles.css` — primary responsive visual system
 - `css/v3-fixes.css` — accessibility and narrow-mobile safeguards
+- `css/bayou-assets.css` — Bayou Broth photography layer and field-notes editorial grid
 - `js/site-data.js` — editable route and menu data
 - `js/main.js` — navigation, route/menu rendering, tab accessibility, and catering mailto flow
 - `DESIGN.md` — art direction
 - `docs/webforge/WEBFORGE_QA.md` — QA status and launch blockers
 - `.webforge/` — development-only controls
+
+## Rebrand status
+
+The public pages (`index.html`, `about-bushido.html`) present **Bayou Broth** only. The repository slug remains `Shaolin-slurp` so the existing GitHub Pages URL keeps working, and `shaolinslurp@gmail.com` stays in place until a verified replacement address is provided.
 
 ## Content status
 
@@ -99,6 +106,5 @@ Schedule, locations, recipes, prices, and operating claims shown in the demo are
 ## Launch inputs still required
 1. Confirm real weekly route and hours.
 2. Confirm menu names, ingredients, pricing, and heat levels.
-3. Replace remaining Shaolin Slurp naming throughout production files with **Bayou Broth**.
 4. Approve final realistic photography set.
 5. Confirm final logo/wordmark, social profiles, ordering approach, production domain, and contact details.

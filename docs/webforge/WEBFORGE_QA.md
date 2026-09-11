@@ -57,6 +57,25 @@ Every significant future pass should be graded across:
 
 Do not ship simply because the average score is high if one critical dimension remains weak.
 
+## Image-quality pass
+The Bayou Broth photography was previously shipped over-compressed and downscaled (215–500px wide) while being rendered far larger, and `bayou-broth-truck-market.webp` was a truncated file that failed to decode in mainstream WebP decoders.
+
+Every Bayou Broth photo was re-exported at production resolution with the same composition, subject matter, and brand grade:
+
+| Asset | Before | After |
+| --- | --- | --- |
+| `bayou-broth-truck-market.webp` | 500×340 (corrupt / undecodable) | 1800×1094 |
+| `bayou-broth-house-bowl.webp` | 360×411 | 1226×1400 |
+| `bayou-broth-shrimp-ramen.webp` | 300×388 | 1083×1400 |
+| `bayou-broth-noodle-lift.webp` | 360×369 | 878×900 |
+| `bayou-broth-bao.webp` | 330×380 | 782×900 |
+| `bayou-broth-branded-cup.webp` | 300×390 | 692×900 |
+| `bayou-broth-cajun-heat-sauce.webp` | 215×583 | 369×1000 |
+
+The truck frame lost its final rows in the corrupt export, so the recovered image is trimmed to the intact 500×304 area before re-export. Both placements use `object-fit:cover`, so no crop or CSS change was required. Intrinsic `width`/`height` attributes in `index.html` now match the new files.
+
+Every final file must decode cleanly (`dwebp` / `webpinfo` report no errors) before it ships.
+
 ## Launch blockers that are content, not design
 1. Replace demo route with verified serving locations and hours.
 2. Confirm bowl names, ingredients, prices, and heat levels.

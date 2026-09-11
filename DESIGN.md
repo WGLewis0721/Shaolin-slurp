@@ -1,63 +1,155 @@
-# Bayou Broth — WebForge Design Direction V3
+# Bayou Broth — WebForge Design Direction
 
-## Selected concept: Street-Food Editorial
-Bayou Broth is a Cajun × ramen mobile noodle house. V3 moves past the previous polished-template feel and gives the brand its own visual system: loud editorial typography, poster/ticket language, original ramen illustration, a custom bowl mark, saffron/red/ink color blocking, strong food crops, and a route-first mobile experience.
+## Selected concept: Gulf South Street-Food Editorial
+
+Bayou Broth is a **Cajun × ramen mobile noodle house** built around the idea **Louisiana pantry + ramen technique**.
+
+The visual target is a real, memorable independent food-truck brand: gritty enough to feel street-level, disciplined enough to feel intentional, and food-first enough that the site makes people hungry before it explains itself.
 
 ## Customer jobs
 1. Know where the truck is serving.
-2. See bowls and prices quickly on a phone.
-3. Understand the Cajun + ramen idea at a glance.
-4. Book the truck for private events.
+2. See food and prices quickly on a phone.
+3. Understand the Cajun + ramen fusion immediately.
+4. Trust that the food is real and appetizing.
+5. Book the truck for private events.
 
-## Visual system
-- Cream `#F3E6CA` — warm paper surface
-- Paper `#FBF1DC` — light editorial field
-- Ink `#101713` — deep structure
-- Swamp `#16372F` — menu / night-service field
+## Brand character
+- Gulf South
+- warm
+- smoky
+- tactile
+- editorial
+- documentary
+- energetic
+- bold
+- practical
+- independent
+
+Avoid cartoonish Louisiana clichés, generic Japanese décor, or over-designed AI fantasy imagery.
+
+## Color system
+- Cream `#F3E6CA` — warm paper / service surface
+- Paper `#FBF1DC` — secondary editorial field
+- Ink `#101713` — primary dark structure
+- Swamp `#16372F` — night-service / structural green
 - Cajun red `#B72A31` — action / heat
-- Dark red `#8B1F25` — signature-bowl field
-- Saffron `#D7A52F` — appetite / accent
+- Dark red `#8B1F25` — deep accent field
+- Saffron `#D7A52F` — appetite / highlight
 - Pepper `#E25F32` — secondary heat cue
 
-Typography remains intentionally mixed:
-- Bebas Neue — oversized street-poster display
+Use 60/30/10 as a composition guide rather than a literal quota. High-energy accents should remain concentrated around focal points, interactions, and branded moments.
+
+## Typography
+- Bebas Neue — oversized display / street-poster language
 - Cormorant Garamond — expressive editorial contrast
 - DM Sans — body copy
-- IBM Plex Mono — route, labels, utility copy
+- IBM Plex Mono — route, labels, utility information
 
-## V3 original assets
-- `assets/bayou-broth/bayou-broth-bowl-mark.svg` — Bayou Broth bowl/chopsticks/flame emblem used in the header, story block, and footer.
-- `assets/bayou-broth/*.webp` — Bayou Broth concept photography set (truck, house bowl, shrimp ramen, noodle lift, bao, Cajun heat sauce, branded cup).
-- `assets/v3/shaolin-bowl-mark.svg` — superseded legacy mark, no longer referenced by the public site.
-- `assets/v3/bayou-tonkotsu-illustration.svg` — custom illustrated Cajun ramen bowl with egg, andouille, okra, noodles, chili crisp, and branded chopsticks.
-- Procedural grain, poster fields, route ticket treatment, ingredient rhythm, and fusion ledger are all brand-specific CSS treatments.
+Rules:
+- strong scale contrast
+- fluid display type with `clamp()` where practical
+- readable body line lengths (~45–75 characters)
+- avoid default SaaS typography treatment
+
+## Spacing + geometry
+Use the WebForge token rhythm:
+
+`4 / 8 / 16 / 24 / 32 / 48 / 64 / 96 / 128`
+
+Use optical corrections only when needed by typography, borders, or image crops.
+
+Avoid arbitrary card padding, inconsistent radii, and generic stacked-section spacing.
+
+## Photography direction
+Photography is now a primary design layer, not placeholder decoration.
+
+Use the Bayou Broth asset set under `assets/bayou-broth/`.
+
+Desired photography:
+- realistic food-truck service
+- believable bowls and portion sizes
+- practical dusk / service-window lighting
+- natural texture and small imperfections
+- warm atmosphere without excessive orange grading
+- shallow but usable depth of field
+- real-feeling stainless, wood, paper, bowls, cups, napkins, condiment bottles, pavement
+
+Avoid:
+- fantasy steam clouds
+- impossible glossy food
+- perfect symmetry
+- oversized ingredients
+- branding on every object
+- pristine stock-photo staging
+- generic AI-generated restaurant imagery
+
+## Current Bayou Broth assets
+- `assets/bayou-broth/bayou-broth-truck-market.webp`
+- `assets/bayou-broth/bayou-broth-house-bowl.webp`
+- `assets/bayou-broth/bayou-broth-shrimp-ramen.webp`
+- `assets/bayou-broth/bayou-broth-noodle-lift.webp`
+- `assets/bayou-broth/bayou-broth-bao.webp`
+- `assets/bayou-broth/bayou-broth-cajun-heat-sauce.webp`
+- `assets/bayou-broth/bayou-broth-branded-cup.webp`
+- `assets/bayou-broth/bayou-broth-bowl-mark.svg`
 
 ## Composition
-- Hero combines the Bayou Broth truck backdrop with the house-bowl photograph as the primary food visual.
-- Route immediately follows the hero and dynamically promotes the next scheduled stop.
-- Signature bowl is cinematic and image-led.
-- Fusion story is presented as a pantry × technique ledger rather than generic feature cards.
-- Menu uses live data plus a branded field-guide illustration.
-- Field notes is an editorial photo spread (noodle lift, bao, Cajun heat sauce, branded cup) between the fusion story and the menu.
-- Street-service section reuses the truck photograph on a different crop and pairs it with a red event poster to vary rhythm.
-- Catering remains a direct email-based static interaction suitable for GitHub Pages.
+- Hero should immediately establish food-truck context + appetite appeal.
+- Route belongs near the top because location is the primary operational question.
+- Signature bowl should be cinematic and photography-led.
+- Fusion story should show **Louisiana pantry × ramen technique** without costume/theme-park styling.
+- Field notes can use close photography to create a documentary rhythm.
+- Menu remains compact and fast to scan.
+- Street-service section should show the truck doing actual work.
+- Catering stays a strong closing conversion path.
 
-## Motion and interaction
-- Restrained reveal motion.
-- Continuous ingredient ticker on capable devices.
-- Motion disabled under `prefers-reduced-motion`.
-- Mobile navigation locks body scroll and neutralizes header blur to avoid the historical iOS stacking bug.
-- Menu categories stay interactive through `site-data.js`.
+Every section should have a distinct compositional job. Avoid repeating the same card treatment down the page.
+
+## Motion + interaction
+- restrained reveal motion
+- tactile hover/press states
+- route and menu interactions remain functional
+- reduced-motion support required
+- mobile navigation must preserve body-scroll and iOS stacking safeguards
+
+Motion supports hierarchy and orientation; it should never compensate for weak composition.
+
+## Accessibility
+- semantic landmarks
+- one page-level `h1`
+- logical heading order
+- visible `:focus-visible`
+- keyboard-operable menu tabs/navigation
+- descriptive alt text for meaningful photography
+- decorative imagery hidden from assistive technology
+- practical 44×44px touch targets
+- WCAG-conscious text contrast
 
 ## Content integrity
-- Existing business email is retained.
-- Route, menu prices, and recipes remain explicitly labeled demo content until client verification.
-- No fabricated awards, testimonials, history, or operating claims.
+Route, pricing, menu details, and operating claims remain demo content until verified.
 
-## Implementation
-- Static GitHub Pages: HTML + CSS + vanilla JavaScript.
-- `js/site-data.js` remains the editable source for menu and schedule content.
-- V3 intentionally avoids a framework or backend so the prototype stays portable and inexpensive.
+Do not fabricate:
+- awards
+- testimonials
+- history
+- customer counts
+- locations
+- partnerships
+- reviews
+- ordering availability
 
-## Quality target
-The V3 target is an 8.5–9/10 visual demo: recognizably Bayou Broth, not a generic restaurant template. Future work should refine verified content and photography rather than reset the core art direction.
+## Architecture
+Static GitHub Pages remains the correct implementation model:
+- HTML
+- CSS
+- vanilla JavaScript
+- no required build step
+
+Do not migrate to a framework without a real product requirement.
+
+## WebForge operating system
+All future substantial work should follow:
+
+`docs/webforge/WEBFORGE_FLOW.md`
+
+The current target remains an **8.5–9/10 production-quality client demo**, judged across identity, composition, imagery, conversion, responsive quality, accessibility, engineering, and content integrity.

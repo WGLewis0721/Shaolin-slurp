@@ -1,7 +1,7 @@
-# Shaolin Slurp Ramen — WebForge Design Direction V3
+# Bayou Broth — WebForge Design Direction V3
 
-## Selected concept: Bayou Dojo / Street-Food Editorial
-Shaolin Slurp is a Cajun × ramen mobile noodle house. V3 moves past the previous polished-template feel and gives the brand its own visual system: loud editorial typography, poster/ticket language, original ramen illustration, a custom bowl mark, saffron/red/ink color blocking, strong food crops, and a route-first mobile experience.
+## Selected concept: Street-Food Editorial
+Bayou Broth is a Cajun × ramen mobile noodle house. V3 moves past the previous polished-template feel and gives the brand its own visual system: loud editorial typography, poster/ticket language, original ramen illustration, a custom bowl mark, saffron/red/ink color blocking, strong food crops, and a route-first mobile experience.
 
 ## Customer jobs
 1. Know where the truck is serving.
@@ -26,17 +26,20 @@ Typography remains intentionally mixed:
 - IBM Plex Mono — route, labels, utility copy
 
 ## V3 original assets
-- `assets/v3/shaolin-bowl-mark.svg` — custom ramen/chopsticks/heat emblem created specifically for Shaolin Slurp.
+- `assets/bayou-broth/bayou-broth-bowl-mark.svg` — Bayou Broth bowl/chopsticks/flame emblem used in the header, story block, and footer.
+- `assets/bayou-broth/*.webp` — Bayou Broth concept photography set (truck, house bowl, shrimp ramen, noodle lift, bao, Cajun heat sauce, branded cup).
+- `assets/v3/shaolin-bowl-mark.svg` — superseded legacy mark, no longer referenced by the public site.
 - `assets/v3/bayou-tonkotsu-illustration.svg` — custom illustrated Cajun ramen bowl with egg, andouille, okra, noodles, chili crisp, and branded chopsticks.
 - Procedural grain, poster fields, route ticket treatment, ingredient rhythm, and fusion ledger are all brand-specific CSS treatments.
 
 ## Composition
-- Hero combines the food truck backdrop with an original illustrated hero bowl instead of repeating the same food photography.
+- Hero combines the Bayou Broth truck backdrop with the house-bowl photograph as the primary food visual.
 - Route immediately follows the hero and dynamically promotes the next scheduled stop.
 - Signature bowl is cinematic and image-led.
 - Fusion story is presented as a pantry × technique ledger rather than generic feature cards.
 - Menu uses live data plus a branded field-guide illustration.
-- Street-service section mixes truck photography with a red event poster to vary rhythm.
+- Field notes is an editorial photo spread (noodle lift, bao, Cajun heat sauce, branded cup) between the fusion story and the menu.
+- Street-service section reuses the truck photograph on a different crop and pairs it with a red event poster to vary rhythm.
 - Catering remains a direct email-based static interaction suitable for GitHub Pages.
 
 ## Motion and interaction
@@ -57,4 +60,4 @@ Typography remains intentionally mixed:
 - V3 intentionally avoids a framework or backend so the prototype stays portable and inexpensive.
 
 ## Quality target
-The V3 target is an 8.5–9/10 visual demo: recognizably Shaolin Slurp, not a generic restaurant template. Future work should refine verified content and photography rather than reset the core art direction.
+The V3 target is an 8.5–9/10 visual demo: recognizably Bayou Broth, not a generic restaurant template. Future work should refine verified content and photography rather than reset the core art direction.

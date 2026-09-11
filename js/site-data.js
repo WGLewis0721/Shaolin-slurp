@@ -1,8 +1,8 @@
-window.SHAOLIN_SITE = {
+window.BAYOU_BROTH_SITE = {
   brand: {
-    name: "Shaolin Slurp Ramen",
+    name: "Bayou Broth",
     concept: "Cajun-ramen fusion food truck",
-    tagline: "Bayou broth. Ramen backbone.",
+    tagline: "Cajun heat. Ramen discipline.",
     email: "shaolinslurp@gmail.com"
   },
   tokens: {
@@ -40,7 +40,7 @@ window.SHAOLIN_SITE = {
     ]
   },
   seo: {
-    title: "Shaolin Slurp Ramen | Cajun-Ramen Food Truck",
-    description: "Shaolin Slurp is a Cajun-ramen fusion food truck serving slow-built broth, Gulf Coast flavor, bold bowls, and private-event catering."
+    title: "Bayou Broth | Cajun × Ramen Food Truck",
+    description: "Bayou Broth is a Cajun-ramen fusion food truck serving slow-built broth, Gulf Coast flavor, bold bowls, and private-event catering."
   }
 };

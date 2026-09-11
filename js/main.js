@@ -92,8 +92,10 @@
   }
   renderMenu('bowls');
 
-  $$('.menu-tab').forEach(btn => btn.addEventListener('click', () => {
-    $$('.menu-tab').forEach(b => {
+  const menuTabs = $$('.menu-tab');
+  const activateTab = (btn, focus=false) => {
+    if (!btn) return;
+    menuTabs.forEach(b => {
       b.classList.remove('active');
       b.setAttribute('aria-selected', 'false');
       b.setAttribute('tabindex', '-1');
@@ -102,7 +104,22 @@
     btn.setAttribute('aria-selected', 'true');
     btn.setAttribute('tabindex', '0');
     renderMenu(btn.dataset.menuFilter);
-  }));
+    if (focus) btn.focus();
+  };
+  menuTabs.forEach((btn, index) => {
+    btn.addEventListener('click', () => activateTab(btn));
+    btn.addEventListener('keydown', e => {
+      let target = null;
+      if (e.key === 'ArrowRight') target = menuTabs[(index + 1) % menuTabs.length];
+      if (e.key === 'ArrowLeft') target = menuTabs[(index - 1 + menuTabs.length) % menuTabs.length];
+      if (e.key === 'Home') target = menuTabs[0];
+      if (e.key === 'End') target = menuTabs[menuTabs.length - 1];
+      if (target) {
+        e.preventDefault();
+        activateTab(target, true);
+      }
+    });
+  });
 
   const form = $('#catering-form');
   if (form) form.addEventListener('submit', e => {

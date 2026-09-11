@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shaolin Slurp - WebForge Design OS</title>
+<style>
+:root{--bg:#111715;--panel:#1a211e;--cream:#f4e6cc;--gold:#d6a43c;--red:#b62631}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--cream);font:14px system-ui,sans-serif;height:100vh;display:grid;grid-template-columns:320px 1fr}.panel{padding:22px;border-right:1px solid #34403a;overflow:auto}.panel h1{font-size:20px;margin:0 0 6px}.panel p{color:#acb7b1;line-height:1.45}.group{border-top:1px solid #34403a;padding-top:18px;margin-top:18px}.group h2{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--gold)}label{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;margin:12px 0}input[type=color]{width:46px;height:32px;border:0;background:none}select,button,input[type=range]{width:100%}button,select{background:#25302b;color:var(--cream);border:1px solid #44524c;padding:10px;cursor:pointer}.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.stage{display:grid;grid-template-rows:auto 1fr;min-width:0}.toolbar{display:flex;gap:8px;padding:12px;background:#0c110f;border-bottom:1px solid #34403a}.toolbar button{width:auto}.toolbar .active{background:var(--gold);color:#111715}.preview-wrap{overflow:auto;display:grid;place-items:start center;padding:28px}.preview{background:white;border:0;height:calc(100vh - 90px);box-shadow:0 20px 60px #0008;transition:width .25s}.desktop{width:min(100%,1440px)}.tablet{width:768px}.mobile{width:390px}.notice{background:#30171a;border:1px solid #7f333a;color:#ffd7da;padding:12px;margin-top:14px}.ok{background:#173b32;border-color:#2b6b5c;color:#dff9ef}code{color:#ffd386}
+</style>
+</head>
+<body>
+<aside class="panel">
+<h1>WebForge Design OS</h1><p>Development control surface for the Shaolin Slurp Cajun-ramen demo.</p>
+<div id="host-notice" class="notice"></div>
+<section class="group"><h2>Design tokens</h2>
+<label>Cream <input type="color" data-token="--cream" value="#f4e6cc"></label>
+<label>Ink <input type="color" data-token="--ink" value="#111715"></label>
+<label>Swamp <input type="color" data-token="--swamp" value="#173b32"></label>
+<label>Red <input type="color" data-token="--red" value="#b62631"></label>
+<label>Gold <input type="color" data-token="--gold" value="#d6a43c"></label>
+<label>Pepper <input type="color" data-token="--pepper" value="#e55c2f"></label>
+<div class="row"><button id="reset">Reset</button><button id="export">Export JSON</button></div>
+</section>
+<section class="group"><h2>Preview</h2><p>Changes are preview-only. Source of truth remains <code>js/site-data.js</code> and <code>css/styles.css</code>.</p></section>
+</aside>
+<main class="stage">
+<div class="toolbar"><button class="active" data-view="desktop">Desktop</button><button data-view="tablet">Tablet</button><button data-view="mobile">Mobile</button><button id="reload">Reload preview</button></div>
+<div class="preview-wrap"><iframe id="preview" class="preview desktop" src="../index.html" title="Website preview"></iframe></div>
+</main>
+<script src="design-os.js"></script>
+</body></html>

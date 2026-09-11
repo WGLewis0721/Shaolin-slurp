@@ -1,4 +1,7 @@
-# WebForge QA — Cajun Ramen Redesign V3
+# WebForge QA — Bayou Broth
+
+## WebForge V2 operating standard
+This project now follows `docs/webforge/WEBFORGE_FLOW.md` as its design + engineering execution system. Future passes should preserve the working architecture, research the niche before major visual changes, create original client-specific assets before final polish, and use the WebForge quality scorecard rather than relying on generic template conventions.
 
 ## Why V3 exists
 V2 improved hierarchy and photography but still leaned too heavily on repeated imagery and a polished-template structure. User review remained around **5–5.5/10**. V3 rebuilds the visual layer around a proprietary street-food editorial system while preserving the working static architecture.
@@ -18,7 +21,7 @@ V2 improved hierarchy and photography but still leaned too heavily on repeated i
 - Replaced the dated Bushido timeline with clearly labeled brand mythology chapters to avoid presenting invented operating history as fact.
 - Removed placeholder generic social destinations from the Bushido footer.
 - Explicitly excluded `.webforge/` development controls from the GitHub Pages build.
-- Kept `site-data.js` as the single editable menu/schedule source (now `window.BAYOU_BROTH_SITE`).
+- Kept `site-data.js` as the single editable menu/schedule source.
 - Preserved the mailto catering workflow and static GitHub Pages deployment model.
 
 ## Astra carryover QA status
@@ -33,33 +36,33 @@ The material issues from the previous review are now addressed:
 - Mobile nav stacking / body-scroll behavior: **hardened across both pages**
 - Public development Design OS: **excluded from Pages build**
 
-## Quality gate review
-- Distinctiveness / proprietary brand language: substantially improved
-- Visual hierarchy / composition: strong
-- Brand fit: strong Cajun × ramen identity without generic Japanese-theme clichés
-- Appetite appeal: stronger mix of food photography + custom food illustration
-- Route UX: immediate and scannable
-- Menu UX: interactive categories retained
-- Catering conversion: direct and prominent
-- Responsive/mobile: dedicated composition changes below 760px plus extra safeguards below 480px
-- Accessibility: skip link, semantic sections, Escape close, keyboard tabs, focus-visible states, reduced-motion support, descriptive food-art alt text
-- Technical feasibility: static HTML/CSS/JS only; no framework or backend added
+## Bayou Broth rebrand pass
+- Renamed customer-facing identity to **Bayou Broth**.
+- Hero uses the Bayou Broth truck environment and house-bowl photography.
+- Signature bowl uses the Bayou Broth ramen photography; the old generic close-up is no longer the intended public asset.
+- Added the documentary-style field-notes photography system.
+- Bayou Broth assets live under `assets/bayou-broth/`.
+- Brand direction is now **Louisiana pantry + ramen technique**, with Gulf South street-food editorial styling instead of Shaolin mythology.
+
+## WebForge V2 quality gates
+Every significant future pass should be graded across:
+1. identity / distinctiveness
+2. visual composition
+3. imagery / asset quality
+4. usability / conversion
+5. responsive quality
+6. accessibility
+7. engineering quality
+8. content integrity
+
+Do not ship simply because the average score is high if one critical dimension remains weak.
 
 ## Launch blockers that are content, not design
 1. Replace demo route with verified serving locations and hours.
 2. Confirm bowl names, ingredients, prices, and heat levels.
 3. Confirm final social profiles and ordering strategy.
-4. Replace or augment the Bayou Broth concept photography with final owner-approved food/truck photography.
+4. Replace or augment concept photography with final owner-approved food/truck photography when available.
 5. Connect a real ordering system only if online ordering is part of the business model.
 
-## Bayou Broth rebrand pass
-- Renamed all customer-facing copy, metadata, JSON-LD, wordmark, and favicon from Shaolin Slurp to **Bayou Broth**.
-- Hero now uses `bayou-broth-truck-market.webp` as the environment and `bayou-broth-house-bowl.webp` as the primary food visual.
-- Signature bowl uses `bayou-broth-shrimp-ramen.webp`; `assets/backgrounds/shaolin-ramen-closeup.jpg` no longer appears on the public site.
-- Added the "Built for street service." field-notes editorial spread (noodle lift, bao, Cajun heat sauce, branded cup).
-- Labels updated: `THE BAYOU DOJO` → `BAYOU BROTH`, `BAYOU DOJO / FIELD GUIDE` → `BAYOU BROTH / FIELD GUIDE`, `SLURP CODE` → `BROTH CODE`, `SHAOLIN SLURP PRESENTS` → `BAYOU BROTH PRESENTS`.
-- Page weight dropped from ~5 MB of JPEG/PNG to well under 100 KB of WebP/SVG imagery; the hero image is preloaded and every below-the-fold image is lazy-loaded with intrinsic dimensions.
-- `about-bushido.html` rebranded and moved onto the same lightweight image set.
-
 ## Do not regress
-Future edits should not replace V3 with generic glass cards, gradient SaaS sections, excessive rounded pills, or another stock restaurant template. Build on the Bayou Broth street-poster system instead.
+Future edits should not replace the current direction with generic glass cards, gradient SaaS sections, excessive rounded pills, reused client assets, or another stock restaurant template. Build on the Bayou Broth street-food editorial system and follow the project-aware WebForge V2 flow.
